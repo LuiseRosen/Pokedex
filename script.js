@@ -18,7 +18,7 @@ async function loadPokemons() {
     let url = 'https://pokeapi.co/api/v2/pokemon/?offset=' + offset + '&limit=' + limit;
     let response = await fetch(url);
     responseAsJson = await response.json();
-    createPokemonsArray(responseAsJson['results']); 
+    createPokemonsArray(responseAsJson['results']);
 }
 
 function loadMorePokemons() {
@@ -37,7 +37,7 @@ async function load20morePokemons() {
     await loadPokemons();
     renderPokemons();
     hide('loadScreen');
-    
+
 }
 
 async function load6morePokemons() {
@@ -55,14 +55,14 @@ function createPokemonsArray(pokemonsJson) { // Array mit den in die Preview zu 
     }
 }
 
-function renderPokemons() { // preview Cards laden
+async function renderPokemons() { // preview Cards laden
     document.getElementById('previewCardsContainer').innerHTML = '';
     for (let i = 0; i < pokemons.length; i++) {
         let pokemonId = i + 1; // i + 1 ist die ID des Pokemons, da ein Array immer bei 0 anfängt, aber die Pokemons bei 1
         let pokemonName = capitalizeWord(pokemons[i]);
         let imgUrl = getPreviewImgUrl(pokemonId);
         document.getElementById('previewCardsContainer').innerHTML += templateCardPreview(i, pokemonName, imgUrl);
-        renderTypesToPreviewCard(pokemonId, i);
+        await renderTypesToPreviewCard(pokemonId, i); ////////////////Semi Fix//////////////////////////////
     }
 }
 
@@ -93,8 +93,8 @@ async function getTypes(pokemonId) {
 
 // Suche -----------------------------------------------------------------------------------------------------------
 
-async function searchPokemon() {
-    if (searchInputContent().length > 1) {
+function searchPokemon() {
+    if (searchInputContent().length >= 3) {
         show('loadScreen');
         filterPokemonPreviewCards();
     }
