@@ -1,0 +1,530 @@
+body {
+    font-family: 'afacad', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+}
+
+h1 {
+    margin: 0;
+}
+
+#loadScreen {
+    flex-direction: column;
+    z-index: 2;
+    position: fixed;
+    height: 100%;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.312);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+#loading {
+    margin: 0;
+    color: white;
+    font-size: 40px;
+    font-weight: 500;
+}
+
+#pageHeader {
+    width: 1150px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin: 24px 0px 24px 0px;
+}
+
+#pokemonLogo {
+    height: 150px;
+}
+
+#searchOutline {
+    margin-right: 20px;
+    width: 240px;
+    height: 34px;
+    display: flex;
+    border: 3px solid rgba(255, 255, 255, 0.378);
+    border-radius: 12px;
+}
+
+#searchInput {
+    border-radius: 0px 9px 9px 0px;
+    background-color: rgba(255, 255, 255, 0.378);
+    height: 32px;
+    width: 204px;
+    border: none;
+    font-size: 20px;
+}
+
+#searchIcon {
+    opacity: 0.378;
+    height: 20px;
+    margin: 6px;
+}
+
+#pageBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: scroll;
+}
+
+/* Card Preview -------------------------------------------------------------------------------------------------*/
+#previewCardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: scroll;
+}
+
+.cardPreview {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 180px;
+    width: 250px;
+    margin: 20px 20px 20px 20px;
+    background-color: rgb(64, 60, 83);
+    color: white;
+    border-radius: 40px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+.cardPreview:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+}
+
+.previewCardBody {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pokemonNamePreview {
+    font-size: 32px;
+    font-weight: 500;
+    margin: 12px 0px 0px 24px;
+    text-align: left;
+}
+
+.previewPokemonImg {
+    margin: 0px 0px 12px 12px;
+    height: 120px;
+}
+
+.previewCardTypesContainer {
+    margin: 0px 12px 0px 0px;
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.typePreview {
+    width: 60px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.211);
+    margin: 0px 0px 12px 0px;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+#loadMoreBtn {
+    height: 50px;
+    width: 160px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    background-color: rgb(64, 60, 83);
+    color: white;
+    border: none;
+    border-radius: 18px;
+    margin: 40px;
+    transition: transform 0.2s ease-in-out;
+}
+
+#loadMoreBtn:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+}
+
+/* Card ----------------------------------------------------------------------------------------------------*/
+#popupBackground {
+    z-index: 2;
+    position: fixed;
+    height: 100%;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.312);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+#card {
+    z-index: 3;
+    flex-direction: column;
+    width: 400px;
+    border-radius: 45px 45px 40px 40px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Header ---------------------------------------------------------------------------------------------- */
+#cardNavigation {
+    height: 18px;
+    display: flex;
+    justify-content: space-between;
+    margin: 24px 32px 0px 32px;
+}
+
+.icon {
+    height: 100%;
+    opacity: 0.211;
+    transition: 0.3s ease-in-out;
+}
+
+.icon:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+#cardHeader {
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    height: 232px;
+    background-color: rgb(64, 60, 83);
+    color: white;
+}
+
+.cardHeadline {
+    margin: 12px 32px 18px 32px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#pokemonId {
+    font-size: 18px;
+}
+
+#cardSubHeadline {
+    display: flex;
+    margin-left: 32px;
+    font-size: 14px;
+}
+
+.type {
+    width: 60px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.211);
+    margin: 0px 12px 12px 0px;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+/* Card Body ---------------------------------------------------------------------------------------------- */
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 348px;
+    background-color: white;
+    border-radius: 40px;
+    margin-top: -40px;
+    padding-bottom: 40px;
+    padding-left: 32px;
+    padding-right: 32px;
+    min-height: 100px;
+}
+
+.cardBodyHeader {
+    margin-top: -18px;
+}
+
+.cardLink {
+    margin-right: 24px;
+    font-size: 22px;
+    font-weight: 500;
+    transition: text-shadow .2s;
+}
+
+.cardLink:hover {
+    cursor: pointer;
+    text-shadow: 0 0 .65px #333, 0 0 .65px #333;
+}
+
+.cardSeparator {
+    height: 4px;
+    width: 100%;
+    background-color: rgba(40, 28, 0, 0.092);
+    margin: 12px 0px 0px 0px;
+    border-radius: 12px;
+}
+
+#pokemonImg {
+    margin-right: -18px;
+    margin-top: -120px;
+    height: 170px;
+    filter: drop-shadow(7px 7px 4px rgba(0, 0, 0, 0.2));
+    transition: transform 1s ease-in-out;
+}
+
+#pokemonImg:hover {
+    transform: scale(1.08);
+}
+
+.pokemonImgContainer {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+.infoContainer {
+    font-size: 18px;
+    height: 100%;
+    justify-content: space-between;
+    margin-top: 14px;
+}
+
+/* Stats Chart ---------------------------------------------------------------------------------------------- */
+
+#statsContainer,
+#statsDataContainer,
+#statsLinesContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    line-height: 20px;
+    /* muss übereinstimmen mit .statsLineContainer heigt */
+}
+
+#statsLinesContainer {
+    width: 150px;
+}
+
+.statsLineContainer {
+    height: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.emptyStatsLine {
+    height: 8px;
+    width: 100%;
+    background-color: rgba(40, 28, 0, 0.092);
+    border-radius: 12px;
+}
+
+.statsLine {
+    background-color: rgb(113, 229, 191);
+    height: 100%;
+    border-radius: 12px;
+}
+
+/* About Section ---------------------------------------------------------------------------------------------- */
+
+#specsListContainer,
+#specsInfoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#specsListContainer {
+    width: 110px;
+}
+
+#specsInfoContainer {
+    width: 214px;
+    margin-left: 20px;
+}
+
+.spec,
+.specInfo {
+    height: 24px;
+}
+
+/* Allgemein ----------------------------------------------------------------------------------------------------------- */
+
+.display-none {
+    display: none;
+}
+
+.display-flex {
+    display: flex;
+}
+
+/* Responsive ----------------------------------------------------------------------------------------------------------- */
+
+/* --- 3 Karten --- */
+@media only screen and (max-width: 1159px) {
+    #pageHeader {
+        width: 870px;
+    }
+}
+
+/* --- 2 Karten --- */
+@media only screen and (max-width: 869px) {
+    #pageHeader {
+        flex-direction: column;
+        align-items: center;
+        width: 590px;
+    }
+
+    #searchOutline {
+        margin-right: 0px;
+        margin-top: 12px;
+        width: 200px;
+        height: 26px;
+        border: 2px solid rgba(255, 255, 255, 0.378);
+        border-radius: 12px;
+    }
+
+    #searchInput {
+        height: 24px;
+        width: 168px;
+        font-size: 20px;
+    }
+
+    #searchIcon {
+        height: 16px;
+        margin: 6px;
+    }
+}
+
+/* --- 1 Karte --- */
+@media only screen and (max-width: 579px) {
+    #pageHeader {
+        width: 300px;
+    }
+
+    #pokemonLogo {
+        height: 100px;
+    }
+
+    #searchOutline {
+        width: 144px;
+        height: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.378);
+        border-radius: 9px;
+    }
+
+    #searchInput {
+        border-radius: 0px 6px 6px 0px;
+        height: 18px;
+        width: 118px;
+        font-size: 16px;
+    }
+
+    #searchIcon {
+        height: 14px;
+        margin: 4px;
+    }
+
+    #loadingGif {
+        height: 300px;
+    }
+
+    #card {
+        background-color: none;
+        height: 435px;
+        width: 300px;
+        border-radius: 30px 30px 30px 30px;
+    }
+
+    /* Card Header */
+
+    #cardNavigation {
+        height: 18px;
+        margin: 18px 20px 0px 20px;
+    }
+
+    #cardHeader {
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        background-color: rgb(64, 60, 83);
+    }
+
+    .cardHeadline {
+        font-size: 14px;
+        margin: 6px 16px 18px 16px;
+    }
+
+    #pokemonName {
+        font-weight: 300;
+    }
+
+    #cardSubHeadline {
+        margin-left: 14px;
+        font-size: 12px;
+    }
+
+    .type {
+        width: 50px;
+        border-radius: 9px;
+        padding: 6px;
+    }
+
+    /* Card Body */
+
+    .cardBody {
+        height: 320px;
+        background-color: white;
+        border-radius: 30px;
+        margin-top: -40px;
+        padding-bottom: 16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        min-height: 100px;
+    }
+
+    .cardBodyHeader {
+        margin-top: -18px;
+    }
+
+    .cardLink {
+        margin-right: 14px;
+        font-size: 14px;
+    }
+
+    .cardSeparator {
+        height: 3px;
+        width: 100%;
+        margin: 6px 0px 6px 0px;
+    }
+
+    #pokemonImg {
+        margin-right: -18px;
+        margin-top: -70px;
+        height: 100px;
+    }
+
+    .infoContainer {
+        margin-top: 0px;
+        font-size: 14px;
+    }
+
+    /* Stats Chart */
+
+    #statsLinesContainer {
+        width: 100px;
+    }
+
+    .statsLineContainer {
+        height: 30px;
+    }
+
+    /* About Section */
+
+    #specsInfoContainer {
+        width: 175px;
+        margin-left: 14px;
+    }
+}

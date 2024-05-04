@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <script src="script.js"></script>
+    <script src="charts.js"></script>
+    <script src="templates.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts.css">
+</head>
+
+<body onload="init()">
+    <div id="pageHeader">
+        <img id="pokemonLogo" src="./img/pokemon_logo.png" alt="">
+        <div id="searchOutline">
+            <label for="searchInput"><img  id="searchIcon" src="./icons/search.svg" alt=""></label>
+            <input onkeydown="searchPokemon()" id="searchInput" type="text"> 
+        </div>
+    </div>
+    <div id="loadScreen" class="display-none">
+        <img id="loadingGif" src="img/loadscreen.gif" alt="">
+        <span id="loading">Loading...</span>
+    </div>
+    <div id="popupBackground" class="display-none" onclick="hideCard('card')">
+        <div id="card" class="display-none" onclick="doNotClose(event)">
+            <div id="cardHeader">
+                <div id="cardNavigation"></div>
+                <div class="cardHeadline">
+                    <h1 id="pokemonName"></h1>
+                    <span id="pokemonId"></span>
+                </div>
+                <div id="cardSubHeadline"></div>
+            </div>
+            <div class="cardBody">
+                <div class="pokemonImgContainer">
+                    <img id="pokemonImg">
+                </div>
+                <div class="cardBodyHeader">
+                    <span onclick="swichCardSection('about')" class="cardLink">About</span>
+                    <span onclick="swichCardSection('stats')" class="cardLink">Base Stats</span>
+                </div>
+                <div class="cardSeparator"></div>
+                <div class="infoContainer display-flex" id="aboutSection">
+                    <span id="specsListContainer"></span>
+                    <span id="specsInfoContainer"></span>
+                </div>
+                <div class="infoContainer display-none" id="baseStatsChart">
+                    <span id="statsContainer"></span>
+                    <span id="statsDataContainer"></span>
+                    <span id="statsLinesContainer"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="pageBody">
+        <div id="searchContainer">
+            
+        </div>
+        <div id="previewCardsContainer"></div>
+        <button onclick="loadMorePokemons()" id="loadMoreBtn">load more</button>
+    </div>
+
+</body>
+
+</html>
