@@ -14,7 +14,6 @@ async function init() {
     createAllPokemonsArray();
 }
 
-
 async function loadPokemons() {
     let url = 'https://pokeapi.co/api/v2/pokemon/?offset=' + offset + '&limit=' + limit;
     let response = await fetch(url);
@@ -33,21 +32,20 @@ function loadMorePokemons() {
     }
 }
 
-function hideLoadScreen() { // setTimeout(hide('loadScreen'), 2000); funktioniert nicht, geht nur ohne übergebene Variable
-    hide('loadScreen');
-}
-
 async function load20morePokemons() {
     offset += limit;
     await loadPokemons();
-    setTimeout(hideLoadScreen, 2000);
+    renderPokemons();
+    hide('loadScreen');
+    
 }
 
 async function load6morePokemons() {
     limit = 6;
     offset += limit;
-    loadPokemons();
-    setTimeout(hideLoadScreen, 2000);
+    await loadPokemons();
+    renderPokemons();
+    hide('loadScreen');
 }
 
 function createPokemonsArray(pokemonsJson) { // Array mit den in die Preview zu ladenden Pokemons erstellen
@@ -135,7 +133,7 @@ function filterPokemonPreviewCards() {
         if (pokemonName.toLowerCase().includes(searchInputContent())) {
             document.getElementById('previewCardsContainer').innerHTML += templateCardPreview(i, pokemonName, imgSrc);
             renderTypesToPreviewCard(pokemonId, i);
-            setTimeout(hideLoadScreen, 2000);
+            hide('loadScreen');
         }
     }
 }
