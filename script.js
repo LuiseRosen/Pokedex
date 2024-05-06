@@ -94,7 +94,6 @@ async function getTypes(pokemonId) {
 
 function searchPokemon() {
     if (searchInputContent().length >= 3) {
-        show('loadScreen');
         filterPokemonPreviewCards();
     }
     else if (searchInputContent().length = 1) {
@@ -123,18 +122,18 @@ function allPokemonsArray(pokemonsJson) { // Array mit allen Pokemon-Namen erste
 }
 
 function filterPokemonPreviewCards() {
+    show('loadScreen');
     document.getElementById('previewCardsContainer').innerHTML = '';
     for (i = 0; i < allPokemons.length; i++) {
         let pokemonId = i + 1;
         let pokemonName = capitalizeWord(allPokemons[i]);
         let imgSrc = getPreviewImgUrl(pokemonId);
-
         if (pokemonName.toLowerCase().includes(searchInputContent())) {
             document.getElementById('previewCardsContainer').innerHTML += templateCardPreview(i, pokemonName, imgSrc);
             renderTypesToPreviewCard(pokemonId, i);
-            hide('loadScreen');
         }
     }
+    hide('loadScreen');
 }
 
 // Card ------------------------------------------------------------------------------------------------------------
