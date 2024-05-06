@@ -22,7 +22,7 @@ async function loadPokemons() {
 }
 
 function loadMorePokemons() {
-    show('loadScreen');
+    //show('loadScreen');
     if (offset < 360) {
         load20morePokemons(); // 20 weitere Pokemons laden
     } else if (offset == 360) { // verhindert, dass Pokemons nach 386 geladen werden
@@ -36,8 +36,6 @@ async function load20morePokemons() {
     offset += limit;
     await loadPokemons();
     renderPokemons();
-    hide('loadScreen');
-
 }
 
 async function load6morePokemons() {
@@ -45,7 +43,6 @@ async function load6morePokemons() {
     offset += limit;
     await loadPokemons();
     renderPokemons();
-    hide('loadScreen');
 }
 
 function createPokemonsArray(pokemonsJson) { // Array mit den in die Preview zu ladenden Pokemons erstellen
@@ -56,14 +53,16 @@ function createPokemonsArray(pokemonsJson) { // Array mit den in die Preview zu 
 }
 
 async function renderPokemons() { // preview Cards laden
+    show('loadScreen');
     document.getElementById('previewCardsContainer').innerHTML = '';
     for (let i = 0; i < pokemons.length; i++) {
         let pokemonId = i + 1; // i + 1 ist die ID des Pokemons, da ein Array immer bei 0 anfängt, aber die Pokemons bei 1
         let pokemonName = capitalizeWord(pokemons[i]);
         let imgUrl = getPreviewImgUrl(pokemonId);
         document.getElementById('previewCardsContainer').innerHTML += templateCardPreview(i, pokemonName, imgUrl);
-        await renderTypesToPreviewCard(pokemonId, i); ////////////////Semi Fix//////////////////////////////
+        await renderTypesToPreviewCard(pokemonId, i); 
     }
+    hide('loadScreen');
 }
 
 function getPreviewImgUrl(pokemonId) {
