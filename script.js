@@ -22,7 +22,6 @@ async function loadPokemons() {
 }
 
 function loadMorePokemons() {
-    //show('loadScreen');
     if (offset < 360) {
         load20morePokemons(); // 20 weitere Pokemons laden
     } else if (offset == 360) { // verhindert, dass Pokemons nach 386 geladen werden
@@ -54,13 +53,12 @@ function createPokemonsArray(pokemonsJson) { // Array mit den in die Preview zu 
 
 async function renderPokemons() { // preview Cards laden
     show('loadScreen');
-    document.getElementById('previewCardsContainer').innerHTML = '';
-    for (let i = 0; i < pokemons.length; i++) {
+    for (let i = offset; i < pokemons.length; i++) {
         let pokemonId = i + 1; // i + 1 ist die ID des Pokemons, da ein Array immer bei 0 anfängt, aber die Pokemons bei 1
         let pokemonName = capitalizeWord(pokemons[i]);
         let imgUrl = getPreviewImgUrl(pokemonId);
         document.getElementById('previewCardsContainer').innerHTML += templateCardPreview(i, pokemonName, imgUrl);
-        await renderTypesToPreviewCard(pokemonId, i); 
+        await renderTypesToPreviewCard(pokemonId, i);
     }
     hide('loadScreen');
 }
@@ -143,7 +141,7 @@ function showCard(i) {
     show('popupBackground');
     show('card');
     loadPokemon(pokemonId);
-    document.body.style.overflow = "hidden"; // srollen unterbinden
+    document.body.style.overflow = "hidden"; // scrollen unterbinden
 }
 
 function hideCard(sectionId) {
@@ -318,5 +316,3 @@ function arrayToUpperCase(array) { // den 1. Buchstaben jedes Wortes im Array zu
 function doNotClose(event) {
     event.stopPropagation();
 }
-
-// -------------------------------------------------------------------------------------------------------------------
